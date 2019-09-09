@@ -1,7 +1,23 @@
 <template>
     <v-app id="app">
         <app-header></app-header>
-        <v-content></v-content>
+        <v-bottom-navigation :value="activeBtn" grow color="red">
+            <v-btn class="nav-button" to="/topics">
+                <span>Topics</span>
+                <v-icon>mdi-newspaper</v-icon>
+            </v-btn>
+            <v-btn class="nav-button" to="/articles">
+                <span>Articles</span>
+                <v-icon>mdi-note</v-icon>
+            </v-btn>
+            <v-btn class="nav-button" to="/dashboard">
+                <span>Dashboard</span>
+                <v-icon>mdi-account</v-icon>
+            </v-btn>
+        </v-bottom-navigation>
+        <v-content id="content">
+            <router-view></router-view>
+        </v-content>
     </v-app>
 </template>
 
@@ -22,5 +38,11 @@ export default {
     max-width: 1000px;
     margin: auto;
     padding: 50px;
+}
+.nav-button {
+    min-height: 56px;
+}
+#content {
+    margin-top: 30px;
 }
 </style>

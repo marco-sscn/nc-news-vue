@@ -1,13 +1,10 @@
 <template>
-    <h1>NC News</h1>
+    <h2>Articles</h2>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style scoped>
-h1 {
-    padding: 15px 0;
-}
+<style>
 </style>
