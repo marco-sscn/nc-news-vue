@@ -29,7 +29,11 @@ export default {
     components: {
         "app-header": Header
     },
-    data: () => ({})
+    data() {
+        return {
+            activeBtn: 1
+        };
+    }
 };
 </script>
 
