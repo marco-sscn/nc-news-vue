@@ -11,3 +11,13 @@ export const getTopics = () => {
     return topics;
   });
 }
+
+export const getArticles = params => {
+  return axios.get(`${baseUrl}articles`, {
+    params
+  }).then(({
+    data
+  }) => {
+    return data;
+  });
+};
