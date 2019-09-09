@@ -1,5 +1,5 @@
 <template>
-    <v-card class="article-card">
+    <v-card class="article-card" v-bind:to="`/articles/${article.article_id}`">
         <v-list-item three-line>
             <v-list-item-content class="align-self-start">
                 <v-list-item-subtitle>{{ article.topic }}</v-list-item-subtitle>

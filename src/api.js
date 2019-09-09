@@ -21,3 +21,25 @@ export const getArticles = params => {
     return data;
   });
 };
+
+export const getArticleById = id => {
+  return axios.get(`${baseUrl}articles/${id}`).then(({
+    data: {
+      article
+    }
+  }) => {
+    return article;
+  });
+};
+
+export const getCommentsByArticleId = (id, params) => {
+  return axios
+    .get(`${baseUrl}articles/${id}/comments`, {
+      params
+    })
+    .then(({
+      data
+    }) => {
+      return data;
+    });
+};
