@@ -3,7 +3,7 @@
         <h2>Topics</h2>
         <ul id="topics-list">
             <li v-bind:key="index" v-for="(topic, index) in topics">
-                <v-card class="topic-card">
+                <v-card class="topic-card" v-bind:to="`/topics/${topic.slug}`">
                     <v-list-item three-line>
                         <v-list-item-content class="align-self-start">
                             <v-list-item-title class="headline mb-2" v-text="topic.slug"></v-list-item-title>

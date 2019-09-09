@@ -15,6 +15,9 @@ const routes = [{
 }, {
   path: "/articles/:id",
   component: SingleArticle
+}, {
+  path: "/topics/:slug",
+  component: Articles
 }];
 
 export default routes;

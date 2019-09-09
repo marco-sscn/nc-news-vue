@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Articles</h2>
+        <h2>{{ this.$route.params.slug || "Articles" }}</h2>
         <ul id="articles-list">
             <li v-bind:key="index" v-for="(article, index) in articles">
                 <article-card :article="article"></article-card>
@@ -18,7 +18,7 @@ export default {
         "article-card": ArticleCard
     },
     created() {
-        getArticles().then(data => {
+        getArticles({ topic: this.$route.params.slug || null }).then(data => {
             this.articles = data.articles;
             this.articlesCount = data.articles_count;
         });
