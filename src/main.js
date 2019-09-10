@@ -21,6 +21,9 @@ const store = new Vuex.Store({
   mutations: {
     logIn: function(state, user) {
       state.loggedInUser = user;
+    },
+    logOut: function(state) {
+      state.loggedInUser = null;
     }
   }
 });
