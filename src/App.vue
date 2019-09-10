@@ -14,6 +14,10 @@
                 <span>Dashboard</span>
                 <v-icon>mdi-account</v-icon>
             </v-btn>
+            <v-btn class="nav-button" to="/login">
+                <span>Login</span>
+                <v-icon>mdi-login</v-icon>
+            </v-btn>
         </v-bottom-navigation>
         <v-content id="content">
             <router-view></router-view>
