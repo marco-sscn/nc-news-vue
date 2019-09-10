@@ -39,12 +39,13 @@ export default {
     },
     data() {
         return {
-            activeBtn: 1
+            activeBtn: 0
         };
     },
     methods: {
         logOut: function() {
             this.$store.commit("logOut");
+            this.$router.push("/login");
         }
     },
     computed: {
