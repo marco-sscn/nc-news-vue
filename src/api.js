@@ -39,3 +39,9 @@ export const getCommentsByArticleId = (id, params) => {
       return data;
     });
 };
+
+export const addUser = user => {
+  return axios.post(`${baseUrl}users`, user).then(({ data: { user } }) => {
+    return user;
+  });
+};

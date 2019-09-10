@@ -3,6 +3,10 @@
         <h2>Login</h2>
         <form v-on:submit.prevent="login">
             <v-text-field v-model="username" color="red" placeholder="Username"></v-text-field>
+            <div id="sign-in-message">
+                <p>Not yet registered?</p>
+                <a id="sign-in-link" v-on:click="register">Sign In</a>
+            </div>
             <v-btn id="login-button" class="mt-12" color="red">Login</v-btn>
             <p id="username-error" v-if="notFound">Username does not exist</p>
         </form>
@@ -30,6 +34,9 @@ export default {
                 .catch(() => {
                     this.notFound = true;
                 });
+        },
+        register: function() {
+            this.$router.push("/register");
         }
     }
 };
@@ -42,5 +49,12 @@ export default {
 }
 #login-button {
     margin-top: 20px !important;
+}
+#sign-in-message {
+    display: flex;
+}
+#sign-in-link {
+    margin-left: 5px;
+    color: red;
 }
 </style>
