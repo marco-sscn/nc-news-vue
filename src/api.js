@@ -53,3 +53,7 @@ export const postArticle = newArticle => {
       return article;
     });
 };
+
+export const remove = (type, id) => {
+  return axios.delete(`${baseUrl}${type}/${id}`);
+};
