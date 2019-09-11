@@ -11,8 +11,13 @@
             <li v-bind:key="index" v-for="(article, index) in articles">
                 <article-card :article="article"></article-card>
             </li>
-            <page-buttons v-bind:pages="Math.ceil(articlesCount / 10)"></page-buttons>
         </ul>
+        <v-pagination
+            @input="next"
+            color="red"
+            v-model="page"
+            :length="Math.ceil(articlesCount / 10)"
+        ></v-pagination>
     </div>
 </template>
 
@@ -36,24 +41,24 @@ export default {
             this.articlesCount = data.articles_count;
         });
     },
-    updated() {
-        getArticles({
-            topic: this.$route.params.slug || null,
-            p: this.actualPage
-        }).then(data => {
-            this.articles = data.articles;
-        });
+    methods: {
+        next: function(page) {
+            getArticles({
+                topic: this.$route.params.slug || null,
+                p: page
+            }).then(data => {
+                this.articles = data.articles;
+            });
+        }
     },
     data() {
         return {
             articles: null,
-            articlesCount: 0
+            articlesCount: 0,
+            page: 1
         };
     },
     computed: {
-        actualPage: function() {
-            return this.$children[0].$data.page;
-        },
         isLoggedIn: function() {
             return this.$store.state.loggedInUser ? true : false;
         }
