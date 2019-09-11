@@ -13,6 +13,16 @@
                                 <span class="subheading mr-2">{{ comment.votes }}</span>
                             </v-row>
                         </v-list-item-content>
+                        <v-btn
+                            v-if="loggedInUser === comment.author"
+                            class="ma-2"
+                            tile
+                            outlined
+                            color="red"
+                            v-on:click="deleteComment(comment.comment_id)"
+                        >
+                            <v-icon>mdi-delete</v-icon>
+                        </v-btn>
                     </v-list-item>
                 </v-card>
             </li>
@@ -34,7 +44,7 @@
 
 <script>
 import moment from "moment";
-import { getCommentsByArticleId, postComment } from "../api";
+import { getCommentsByArticleId, postComment, remove } from "../api";
 
 export default {
     props: ["articleId"],
@@ -62,6 +72,13 @@ export default {
             postComment(newComment).then(comment => {
                 this.comments.unshift(comment);
                 this.comment = "";
+            });
+        },
+        deleteComment: function(id) {
+            remove("comments", id).then(() => {
+                this.comments = this.comments.filter(
+                    comment => comment.comment_id !== id
+                );
             });
         }
     },
