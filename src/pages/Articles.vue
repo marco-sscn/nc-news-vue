@@ -1,12 +1,13 @@
 <template>
     <div>
         <h2>{{ this.$route.params.slug || "Articles" }}</h2>
-        <ul id="articles-list">
+        <spinner v-if="!articles"></spinner>
+        <ul v-else id="articles-list">
             <li v-bind:key="index" v-for="(article, index) in articles">
                 <article-card :article="article"></article-card>
             </li>
+            <page-buttons v-bind:pages="Math.ceil(articlesCount / 10)"></page-buttons>
         </ul>
-        <page-buttons v-bind:pages="Math.ceil(articlesCount / 10)"></page-buttons>
     </div>
 </template>
 
@@ -14,11 +15,13 @@
 import { getArticles } from "../api";
 import ArticleCard from "../components/ArticleCard.vue";
 import PageButtons from "../components/PageButtons.vue";
+import Spinner from "../components/Spinner.vue";
 
 export default {
     components: {
         "article-card": ArticleCard,
-        "page-buttons": PageButtons
+        "page-buttons": PageButtons,
+        spinner: Spinner
     },
     created() {
         getArticles({
@@ -30,14 +33,15 @@ export default {
     },
     updated() {
         getArticles({
-            topic: this.$route.params.slug || null, p: this.actualPage
+            topic: this.$route.params.slug || null,
+            p: this.actualPage
         }).then(data => {
             this.articles = data.articles;
         });
     },
     data() {
         return {
-            articles: [],
+            articles: null,
             articlesCount: 0
         };
     },

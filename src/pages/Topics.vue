@@ -1,7 +1,8 @@
 <template>
     <div>
         <h2>Topics</h2>
-        <ul id="topics-list">
+        <spinner v-if="!topics"></spinner>
+        <ul v-else id="topics-list">
             <li v-bind:key="index" v-for="(topic, index) in topics">
                 <v-card class="topic-card" v-bind:to="`/topics/${topic.slug}`">
                     <v-list-item three-line>
@@ -18,8 +19,12 @@
 
 <script>
 import { getTopics } from "../api";
+import Spinner from "../components/Spinner.vue";
 
 export default {
+    components: {
+        spinner: Spinner
+    },
     created() {
         getTopics().then(topics => {
             this.topics = topics;
@@ -27,7 +32,7 @@ export default {
     },
     data() {
         return {
-            topics: []
+            topics: null
         };
     }
 };
