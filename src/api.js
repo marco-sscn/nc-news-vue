@@ -57,3 +57,11 @@ export const postArticle = newArticle => {
 export const remove = (type, id) => {
   return axios.delete(`${baseUrl}${type}/${id}`);
 };
+
+export const postComment = ({ article_id, username, body }) => {
+  return axios
+    .post(`${baseUrl}articles/${article_id}/comments`, { username, body })
+    .then(({ data: { comment } }) => {
+      return comment;
+    });
+};
