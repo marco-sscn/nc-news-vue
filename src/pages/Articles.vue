@@ -1,6 +1,11 @@
 <template>
     <div>
-        <h2>{{ this.$route.params.slug || "Articles" }}</h2>
+        <div id="articles-header">
+            <h2>{{ this.$route.params.slug || "Articles" }}</h2>
+            <v-btn v-if="isLoggedIn" class="ma-2" tile outlined color="red" to="/post">
+                <v-icon left>mdi-pencil</v-icon>Post Article
+            </v-btn>
+        </div>
         <spinner v-if="!articles"></spinner>
         <ul v-else id="articles-list">
             <li v-bind:key="index" v-for="(article, index) in articles">
@@ -48,12 +53,20 @@ export default {
     computed: {
         actualPage: function() {
             return this.$children[0].$data.page;
+        },
+        isLoggedIn: function() {
+            return this.$store.state.loggedInUser ? true : false;
         }
     }
 };
 </script>
 
 <style scoped>
+#articles-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 ul {
     padding-inline-start: 0px;
     margin-top: 20px;

@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard.vue";
 import SingleArticle from "./pages/SingleArticle.vue";
 import Login from "./pages/Login.vue";
 import Register from "./pages/Register.vue";
+import PostArticle from "./pages/PostArticle.vue";
 
 const routes = [
   {
@@ -33,6 +34,10 @@ const routes = [
   {
     path: "/register",
     component: Register
+  },
+  {
+    path: "/post",
+    component: PostArticle
   }
 ];
 
