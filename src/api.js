@@ -45,3 +45,11 @@ export const addUser = user => {
     return user;
   });
 };
+
+export const postArticle = newArticle => {
+  return axios
+    .post(`${baseUrl}articles`, newArticle)
+    .then(({ data: { article } }) => {
+      return article;
+    });
+};
