@@ -24,13 +24,11 @@
 <script>
 import { getArticles } from "../api";
 import ArticleCard from "../components/ArticleCard.vue";
-import PageButtons from "../components/PageButtons.vue";
 import Spinner from "../components/Spinner.vue";
 
 export default {
     components: {
         "article-card": ArticleCard,
-        "page-buttons": PageButtons,
         spinner: Spinner
     },
     created() {
