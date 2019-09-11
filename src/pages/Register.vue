@@ -2,10 +2,10 @@
     <div>
         <h2>Register</h2>
         <form v-on:submit.prevent="register">
-            <v-text-field v-model="username" color="red" placeholder="Username"></v-text-field>
-            <v-text-field v-model="name" color="red" placeholder="Full Name"></v-text-field>
+            <v-text-field v-model="username" color="red" placeholder="Username" required></v-text-field>
+            <v-text-field v-model="name" color="red" placeholder="Full Name" required></v-text-field>
             <p id="registration-error" v-if="error">Username already exists</p>
-            <v-btn @click="register" id="register-button" class="mt-12" color="red">Register</v-btn>
+            <v-btn type="submit" id="register-button" class="mt-12" color="red">Register</v-btn>
         </form>
     </div>
 </template>
